@@ -1,34 +1,12 @@
 <template>
 
-    <!-- Usa-se os dois pontos antes de uma propriedade para indicar que o valor dessa propriedade é uma variável -->
-    <!-- O nome desse conceito é "two way data binding", onde os dados não servem apenas para visualização. Sendo que, desta maneira é posível alterar o valor de uma variável dinamicamente e em tempo real -->
-    <div>
-        <div>
-            <label for="name">Nome</label>
-            <input type="text" name="name" v-model="nome">
-        </div>
-        
+    <div id="client">
+        <h4>Nome: {{ client.nome }}</h4>
         <hr>
-
-        <div>
-            <label for="number">Número</label>
-            <input type="text" name="number" :value="numero">
-        </div>
-        
-        <hr>
-
-        <div>
-            <label for="email">Email</label>
-            <input type="text" name="email" value="email">
-        </div>
+        <p>Email: {{ client.email }}</p>
+        <p>Idade: {{ client.idade }}</p>
 
     </div>
-
-    <p>A variável nome tem como valor: {{ nome }}</p>
-
-    <p>A variável numero tem como valor: {{ numero }}</p>
-
-    <p>A variável email tem como valor: {{ email }}</p>
 
 </template>
 
@@ -37,11 +15,19 @@
 export default ({
     data(){
         return {
-            nome : "João Henrique",
-            numero : "999955882",
-            email : "joaohenriquerc123@gmail.com",
-            idade : 0,
+            // nome : "João Henrique",
+            // numero: "999955882",
+            // email: "joaohenriquerc123@gmail.com",
+            // idade: 0,
         }
+    },
+
+    props: {
+        nome: String,
+        email: String,
+        idade: Number,
+        numero: Number,
+        client: Object
     }
 })
 
@@ -49,10 +35,11 @@ export default ({
 
 <style scoped>
 
-    #box{
-        width: 40px;
-        height: 40px;
-        background-color: rgb(0, 0, 0);
+    #client{
+        max-width: 256px;
+        border: 1px solid black;
+        padding: 1%;
+        margin-bottom: 32px;
     }
 
 </style>
