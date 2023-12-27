@@ -1,22 +1,34 @@
 <template>
 
     <!-- Usa-se os dois pontos antes de uma propriedade para indicar que o valor dessa propriedade é uma variável -->
-    <!-- O nome desse conceito é "one to way data binding", onde os dados são utilizados apenas para visualização -->
-    <div id="cliente">
+    <!-- O nome desse conceito é "two way data binding", onde os dados não servem apenas para visualização. Sendo que, desta maneira é posível alterar o valor de uma variável dinamicamente e em tempo real -->
+    <div>
         <div>
             <label for="name">Nome</label>
-            <input type="text" name="name" :value="nome">
+            <input type="text" name="name" v-model="nome">
         </div>
         
         <hr>
 
         <div>
             <label for="number">Número</label>
-            <input type="text" name="number" value="numero">
+            <input type="text" name="number" :value="numero">
         </div>
         
         <hr>
+
+        <div>
+            <label for="email">Email</label>
+            <input type="text" name="email" value="email">
+        </div>
+
     </div>
+
+    <p>A variável nome tem como valor: {{ nome }}</p>
+
+    <p>A variável numero tem como valor: {{ numero }}</p>
+
+    <p>A variável email tem como valor: {{ email }}</p>
 
 </template>
 

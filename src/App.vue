@@ -10,14 +10,18 @@
 
 <script>
 import clientItem from "./components/clientItem";
-import productItem from "./components/productItem";
+// import productItem from "./components/productItem";
 
 export default {
   name: 'App',
   components: {
     clientItem,
-    productItem
-  }
+    // productItem
+  },
+
+  mounted() {
+    document.title = 'Aulas Vue.js';
+  },
 }
 </script>
 
