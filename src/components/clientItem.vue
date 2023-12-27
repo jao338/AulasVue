@@ -1,6 +1,6 @@
 <template>
 
-    <div id="client">
+    <div :class="{'client': !isPremium, 'client-premium': isPremium}">
         <h4>Nome: {{ client.nome }}</h4>
         <hr>
         <p>Email: {{ client.email }}</p>
@@ -27,7 +27,7 @@
 export default ({
     data(){
         return {
-            
+            isPremium: false
         }
     },
 
@@ -41,9 +41,17 @@ export default ({
 
 <style scoped>
 
-    #client{
+    .client{
         max-width: 256px;
         border: 1px solid black;
+        padding: 1%;
+        margin-bottom: 32px;
+    }
+
+    .client-premium{
+        max-width: 256px;
+        background: rgb(75, 75, 75);
+        color: yellow;
         padding: 1%;
         margin-bottom: 32px;
     }
