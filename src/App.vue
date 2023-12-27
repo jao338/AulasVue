@@ -5,9 +5,9 @@
     
     <!-- É possível passar variáveis para um componente em sua criação -->
     <!-- Também é possível passar um objeto contendo os atributos relacionados ao objeto-->
-    <clientItem :client="client"/>
-
-    <!-- <clientItem :nome="meuNome" :email="meuEmail" :idade="minhaIdade"/> -->
+    <clientItem :client="client1" :showAge="true"/>
+    <clientItem :client="client2" :showAge="true"/>
+    <clientItem :client="client3" :showAge="true"/>
 
   </div>
 
@@ -24,14 +24,25 @@ export default {
 
   data(){
     return{
-      meuNome: "João Henrique",
-      meuEmail: "joaohenriquerc123@gmail.com",
-      minhaIdade: "22",
-      client: {
+      
+      client1: {
+        nome: "João Henrique",
+        email: "joaohenriquerc123@gmail.com",
+        idade: 22
+      },
+
+      client2: {
         nome: "Chico Linguiça",
         email: "chico.linguaca@gmail.com",
-        idade: 88
-      }
+        idade: 17
+      },
+
+      client3: {
+        nome: "Veio",
+        email: "veio123@gmail.com",
+        idade: 120
+      },
+
     }
   },
 

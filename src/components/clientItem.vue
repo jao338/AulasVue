@@ -4,7 +4,19 @@
         <h4>Nome: {{ client.nome }}</h4>
         <hr>
         <p>Email: {{ client.email }}</p>
-        <p>Idade: {{ client.idade }}</p>
+
+        <!-- Caso use "v-if" e "v-else", o elemento é exibido caso a condição seja verdadeira ou destruído caso seja falsa -->
+        <!-- O "v-else" deve ser usado após "v-if" e não recebe nenhum parâmetro -->
+        <p v-if="showAge">Idade: {{ client.idade }}</p>
+        <p v-else>A idade foi ocultada</p>
+
+        <p v-if="client.idade < 18">O cliente é menor de idade</p>
+        <p v-else-if="client.idade >= 120">O cliente é velho demais</p>
+        <p v-else-if="client.idade >= 18">O cliente é maior de idade</p>
+        
+
+        <!-- Ao usar "v-show", o elemento é exibido caso a condição seja verdadeira, mas caso seja falsa o elemento é ocultado -->
+        <!-- <p v-show="showAge">Idade: {{ client.idade }}</p> -->
 
     </div>
 
@@ -15,19 +27,13 @@
 export default ({
     data(){
         return {
-            // nome : "João Henrique",
-            // numero: "999955882",
-            // email: "joaohenriquerc123@gmail.com",
-            // idade: 0,
+            
         }
     },
 
     props: {
-        nome: String,
-        email: String,
-        idade: Number,
-        numero: Number,
-        client: Object
+        client: Object,
+        showAge: Boolean
     }
 })
 
