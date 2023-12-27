@@ -5,18 +5,14 @@
         <hr>
         <p>Email: {{ client.email }}</p>
 
-        <!-- Caso use "v-if" e "v-else", o elemento é exibido caso a condição seja verdadeira ou destruído caso seja falsa -->
-        <!-- O "v-else" deve ser usado após "v-if" e não recebe nenhum parâmetro -->
         <p v-if="showAge">Idade: {{ client.idade }}</p>
         <p v-else>A idade foi ocultada</p>
 
         <p v-if="client.idade < 18">O cliente é menor de idade</p>
         <p v-else-if="client.idade >= 120">O cliente é velho demais</p>
         <p v-else-if="client.idade >= 18">O cliente é maior de idade</p>
-        
 
-        <!-- Ao usar "v-show", o elemento é exibido caso a condição seja verdadeira, mas caso seja falsa o elemento é ocultado -->
-        <!-- <p v-show="showAge">Idade: {{ client.idade }}</p> -->
+        <button @click="mudarCor">Mudar cor</button>        
 
     </div>
 
@@ -34,6 +30,15 @@ export default ({
     props: {
         client: Object,
         showAge: Boolean
+    },
+
+    methods: {
+        mudarCor: function(){
+            
+            // Sempre que utilizar uma variável dentro da função "data()" é necessário utilizar "this", que faz referência ao próprio componente
+            this.isPremium = !this.isPremium;
+
+        }
     }
 })
 
