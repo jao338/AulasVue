@@ -1,10 +1,19 @@
 <template>
 
   <div id="app">
-    <h1>Aulas de Vue.js</h1>
-    
-    <div v-for="client in clients"  :key="client.id">
+    <h3>Cadastro: </h3>
 
+    <input type="text" placeholder="nome" v-model="nomeField"> <br>
+    <input type="email" placeholder="email" v-model="emailField"> <br>
+    <input type="number" placeholder="idade" v-model="idadeField"> <br>
+
+    <button @click="cadastrarUsuario">Cadastrar</button>
+
+    <hr>
+    
+    <div v-for="(client, index) in clients"  :key="client.id">
+
+      <h4>{{ index + 1 }}</h4>
       <clientItem :client="client"/>
       
     </div>
@@ -18,13 +27,14 @@ import clientItem from "./components/clientItem";
 
 export default {
   name: 'App',
-  components: {
-    clientItem,
-  },
 
   data(){
     return{
-      
+    
+      nomeField: "",
+      emailField: "",
+      idadeField: 0,
+
       clients: [
         
         {
@@ -47,15 +57,39 @@ export default {
           email: "ednaldopereira@gmail.com",
           idade: 120
         },
+
+        {
+          id: 4,
+          nome: "Ricardo Milos",
+          email: "ricardo.milos@gmail.com",
+          idade: 40
+        },
         
-      ]
+      ],
 
     }
   },
 
+    methods: {
+        cadastrarUsuario: function(){
+
+        this.clients.push({id: Date.now(), nome: this.nomeField, email: this.emailField, idade: this.idadeField});
+
+        this.nomeField = "";
+        this.emailField = "";
+        this.idadeField = 0;
+
+      }
+    },
+
   mounted() {
     document.title = 'Aulas Vue.js';
   },
+
+  components: {
+    clientItem,
+  },
+
 }
 </script>
 
