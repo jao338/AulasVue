@@ -13,10 +13,13 @@
 
     <hr>
     
-    <div v-for="(client, index) in clients"  :key="client.id">
+    <!-- Sempre que se utilizar um "v-for" é necessário atribuir a diretiva ":key" como identificador único -->
+    <div v-for="(client, index) in clients" :key="client.id">
 
       <h4>{{ index + 1 }}</h4>
-      <clientItem :client="client"/>
+
+      <!-- O elemento pai espera um elemento customizado vindo de um elemento filho -->
+      <clientItem :client="client" @meDelete="deletarUsuario($event)"/>
       
     </div>
 
@@ -76,11 +79,12 @@ export default {
     methods: {
         cadastrarUsuario: function(){
 
+          // Não faz nada caso o campo esteja vazio, com um espáço ou tenha menos que 3 caracteres.
           if(this.nomeField == "" || this.nomeField == " " || this.nomeField.length < 3){
             this.deuErro = true;
           }else{
 
-            
+            //  Adiciona ao array um objeto contendo as informações do input
             this.clients.push({id: Date.now(), nome: this.nomeField, email: this.emailField, idade: this.idadeField});
             this.nomeField = "";
             this.emailField = "";
@@ -89,11 +93,24 @@ export default {
             this.deuErro = false;
 
           }
+      },
 
+      deletarUsuario: function($event){
+
+        //  Recupera o id do evento
+        let id = $event.id;
+
+        //  Filtra o array pelo id dos itens que forem diferentes do id do evento. Ou seja, o item que possuir id igual ao evento é excluído do array
+        let array = this.clients.filter(client => client.id != id);
+
+        //  Atribui ao array "clients" com os novos valores
+        this.clients = array;
 
       }
-    },
 
+    },
+  //  Assim que o componente é montado (ou seja, inserido no DOM), o título do documento HTML é configurado
+  //  Obs. Sempre que esse componente for utilizado, independentemente da página, o título será alterado para o especificado
   mounted() {
     document.title = 'Aulas Vue.js';
   },

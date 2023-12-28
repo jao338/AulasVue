@@ -13,6 +13,7 @@
         <p v-else-if="client.idade >= 18">O cliente é maior de idade</p>
 
         <button @click="mudarCor">Mudar cor</button>        
+        <button @click="deletarUsuario">Deletar</button>
 
     </div>
 
@@ -37,6 +38,13 @@ export default ({
             
             // Sempre que utilizar uma variável dentro da função "data()" é necessário utilizar "this", que faz referência ao próprio componente
             this.isPremium = !this.isPremium;
+
+        },
+
+        deletarUsuario: function(){
+        
+            //  O componente emite um evento personalizado para o seu elemento pai
+            this.$emit("meDelete", {component: this, id: this.client.id});
 
         }
     }
