@@ -1,9 +1,10 @@
 <template>
 
     <div :class="{'client': !isPremium, 'client-premium': isPremium}">
-        <h4>Nome: {{ client.nome }}</h4>
+        <h4>Nome: {{ uppperCaseName }}</h4>
         <hr>
         <p>Email: {{ client.email }}</p>
+        <p>{{ idEspecial }}</p>
 
         <p v-if="showAge">Idade: {{ client.idade }}</p>
         <p v-else>A idade foi ocultada</p>
@@ -47,7 +48,27 @@ export default ({
             this.$emit("meDelete", {component: this, id: this.client.id});
 
         }
+    },
+
+    //  Os métodos computados são úteis quando você precisa realizar operações em dados reativos e quer que o resultado seja armazenado em cache até que as dependências sejam alteradas.
+    //  Neste caso, o valor de "client.nome" é transformado em maiusculas
+
+    computed: {
+
+      uppperCaseName(){
+
+        return this.client.nome.toUpperCase();
+
+      },
+
+      idEspecial: function(){
+
+        return ((this.client.nome + this.client.idade).toUpperCase());
+
+      }
+
     }
+
 })
 
 </script>

@@ -109,6 +109,7 @@ export default {
       }
 
     },
+
   //  Assim que o componente é montado (ou seja, inserido no DOM), o título do documento HTML é configurado
   //  Obs. Sempre que esse componente for utilizado, independentemente da página, o título será alterado para o especificado
   mounted() {
