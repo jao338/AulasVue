@@ -14,7 +14,7 @@
     <hr>
     
     <!-- Sempre que se utilizar um "v-for" é necessário atribuir a diretiva ":key" como identificador único -->
-    <div v-for="(client, index) in clients" :key="client.id">
+    <div v-for="(client, index) in orderClients" :key="client.id">
 
       <h4>{{ index + 1 }}</h4>
 
@@ -29,6 +29,7 @@
 
 <script>
 import clientItem from "./components/clientItem";
+import _ from 'lodash';
 
 export default {
   name: 'App',
@@ -106,6 +107,14 @@ export default {
         //  Atribui ao array "clients" com os novos valores
         this.clients = array;
 
+      }
+
+    },
+
+    computed: {
+
+      orderClients: function(){
+        return _.orderBy(this.clients, ['nome'], ['asc'])
       }
 
     },
